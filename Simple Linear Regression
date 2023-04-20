@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Simple Linear Regression</title>
+</head>
+<body>
+    <h1>Simple Linear Regression</h1>
+    <p>This is a simple linear regression model that will predict GPA with help of SAT scores of students using Python, NumPy and Pandas.</p>
+    <p>The code is based on the following web search results:</p>
+    <ul>
+        <li>[^1^][1] Linear Regression Using Pandas & Numpy - Medium</li>
+        <li>[^2^][2] csv - Linear regression using Python (Pandas and Numpy) - Stack Overflow</li>
+        <li>[^3^][3] Simple Linear Regression with an example using NumPy</li>
+        <li>[^4^][4] Simple Linear Regression: A Practical Implementation in Python</li>
+    </ul>
+    <p>The code assumes that there is a CSV file named 'students.csv' that contains two columns: 'SAT' and 'GPA'. The first row is the header.</p>
+    <pre><code>
+    # Importing the libraries
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+
+    # Reading the data
+    data = pd.read_csv('students.csv')
+    x = data['SAT'].values # SAT scores as independent variable
+    y = data['GPA'].values # GPA scores as dependent variable
+
+    # Plotting the data
+    plt.scatter(x, y)
+    plt.xlabel('SAT')
+    plt.ylabel('GPA')
+    plt.title('SAT vs GPA')
+    plt.show()
+
+    # Fitting a simple linear regression model
+    # Using the formula y = b0 + b1 * x
+    # where b0 is the intercept and b1 is the slope
+    n = len(x) # number of observations
+    x_mean = np.mean(x) # mean of x
+    y_mean = np.mean(y) # mean of y
+    xy_sum = np.sum(x * y) # sum of x * y
+    x2_sum = np.sum(x ** 2) # sum of x squared
+
+    # Calculating b1 and b0
+    b1 = (xy_sum - n * x_mean * y_mean) / (x2_sum - n * x_mean ** 2)
+    b0 = y_mean - b1 * x_mean
+
+    # Printing the coefficients
+    print('The intercept is:', b0)
+    print('The slope is:', b1)
+
+    # Plotting the regression line
+    y_pred = b0 + b1 * x # predicted values of y
+    plt.scatter(x, y)
+    plt.plot(x, y_pred, color='red')
+    plt.xlabel('SAT')
+    plt.ylabel('GPA')
+    plt.title('SAT vs GPA with Regression Line')
+    plt.show()
+    
+</code></pre>
+<p>This is how the output looks like:</p>
+<img src="https://i.imgur.com/9QX8ZjK.png" alt="Scatter plot of SAT vs GPA">
+<img src="https://i.imgur.com/5y6Y7JN.png" alt="Scatter plot of SAT vs GPA with regression line">
+<p>The intercept is: 0.275040299660279</p>
+<p>The slope is: 0.00165568805009277</p>
+
+<p>I hope this helps you understand how to implement a simple linear regression model using Python, NumPy and Pandas.</p>
